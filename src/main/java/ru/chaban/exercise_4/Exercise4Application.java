@@ -4,14 +4,13 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.chaban.exercise_4.domain.Users;
-import ru.chaban.exercise_4.repository.UsersRepository;
+import ru.chaban.exercise_4.utility.FromFileToDB;
 
 @SpringBootApplication
 @AllArgsConstructor
 public class Exercise4Application {
 
-	private UsersRepository usersRepository;
+	private final FromFileToDB fromFileToDB;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Exercise4Application.class, args);
@@ -20,9 +19,7 @@ public class Exercise4Application {
 	@PostConstruct
 	public void init() {
 		System.out.println("Start!!!!!!!!!!!!!!!!!!");
-		Users users = new Users();
-		usersRepository.save(users);
-
+		fromFileToDB.doIt();
 		System.out.println("--------");
 	}
 
