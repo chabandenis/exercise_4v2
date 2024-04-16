@@ -5,7 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.chaban.exercise_4.domain.Logins;
 
 public interface LoginsRepository extends JpaRepository<Logins, Integer> {
-
-//    List<Users> findByStatus(int status);
-
 }

@@ -26,6 +26,9 @@ public class ConvertRawToUsers implements ConvertRawToUsersInteface{
 
     @Override
     public Users convertFromRowInFile(RawInFile rawInFile) {
+        if (rawInFile.getAccess_date() == null)
+            return null;
+
         Users users = new Users();
         users.setId(rawInFile.getId());
         users.setUsername(rawInFile.getUsername());

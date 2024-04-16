@@ -2,7 +2,7 @@ package ru.chaban.exercise_4.utility;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.chaban.exercise_4.data.GetRaws;
+import ru.chaban.exercise_4.data.GetRawsInterface;
 import ru.chaban.exercise_4.data.RawInFile;
 import ru.chaban.exercise_4.domain.Logins;
 import ru.chaban.exercise_4.domain.Users;
@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class FromFileToDB {
 
-    private final GetRaws getRaws;
+    private final GetRawsInterface getRawsInterface;
     private final ConvertRawToUsersInteface convertRawToUsers;
     private final ConvertRawToLoginsInteface convertRawToLogins;
     private final UsersServiceInterface usersServiceInterface;
@@ -24,7 +24,7 @@ public class FromFileToDB {
     public void doIt(){
 
         // Шаг 1 чтение
-        List<RawInFile> rawInFiles = getRaws.get();
+        List<RawInFile> rawInFiles = getRawsInterface.get();
         System.out.println(rawInFiles);
 
         //шаг 2 преобразование

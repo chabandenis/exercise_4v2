@@ -28,8 +28,11 @@ public class ConvertRawToLogins implements ConvertRawToLoginsInteface {
 
     @Override
     public Logins convertFromRowInFile(RawInFile rawInFile) {
+        if (rawInFile.getAccess_date() == null)
+            return null;
+
         Logins logins = new Logins();
-        
+
         if (rawInFile.getApplication().contains("web") || rawInFile.getApplication().contains("web")) {
             logins.setApplication(rawInFile.getApplication());
         } else {

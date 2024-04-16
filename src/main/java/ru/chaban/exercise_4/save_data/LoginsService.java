@@ -18,6 +18,10 @@ public class LoginsService implements LoginsServiceInteface {
     @Override
     public void save(List<Logins> logins) {
         for (Logins l : logins) {
+            if (l ==null){
+                System.out.println("ЛОГ !!! пустая строка");
+                continue;
+            }
             loginsRepository.save(l);
         }
     }

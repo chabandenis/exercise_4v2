@@ -17,6 +17,11 @@ public class UsersService implements UsersServiceInterface {
     @Override
     public void save(List<Users> users) {
         for (Users u : users) {
+            if (u ==null){
+                System.out.println("ЛОГ !!! пустая строка");
+                continue;
+            }
+
             usersRepository.save(u);
         }
     }

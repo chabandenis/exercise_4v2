@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @Data
-public class GetRawTest implements GetRaws {
+public class GetRawTestInterface implements GetRawsInterface {
     @Override
     public List<RawInFile> get() {
         List<RawInFile> rawInFiles = new ArrayList<>();
@@ -39,7 +39,7 @@ public class GetRawTest implements GetRaws {
         RawInFile logins3 = new RawInFile();
         logins3.setId(3);
         logins3.setApplication("Application2");
-        logins3.setAccess_date(LocalDate.now());
+        logins3.setAccess_date(null);
         logins3.setUsername("username2");
         logins3.setId_user(3);
         logins3.setFio("fio2");
