@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class ConvertRawToLogins implements ConvertRawToLoginsInteface{
+public class ConvertRawToLogins implements ConvertRawToLoginsInteface {
 
     private final UsersRepository usersRepository;
 
@@ -19,7 +19,7 @@ public class ConvertRawToLogins implements ConvertRawToLoginsInteface{
     public List<Logins> getLogins(List<RawInFile> rawInFiles) {
         List<Logins> logins = new ArrayList<>();
 
-        for (RawInFile r:rawInFiles){
+        for (RawInFile r : rawInFiles) {
             logins.add(convertFromRowInFile(r));
         }
 
@@ -29,7 +29,13 @@ public class ConvertRawToLogins implements ConvertRawToLoginsInteface{
     @Override
     public Logins convertFromRowInFile(RawInFile rawInFile) {
         Logins logins = new Logins();
-        logins.setApplication(rawInFile.getApplication());
+        
+        if (rawInFile.getApplication().contains("web") || rawInFile.getApplication().contains("web")) {
+            logins.setApplication(rawInFile.getApplication());
+        } else {
+            logins.setApplication("other:" + rawInFile.getApplication());
+        }
+
         logins.setAccess_date(rawInFile.getAccess_date());
 
         logins.setUserId(usersRepository.findById(rawInFile.getId_user()).get());
