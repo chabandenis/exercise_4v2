@@ -4,14 +4,14 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.chaban.exercise_4.domain.GroupStart;
-import ru.chaban.exercise_4.repository.GroupStartRepository;
+import ru.chaban.exercise_4.domain.Users;
+import ru.chaban.exercise_4.repository.UsersRepository;
 
 @SpringBootApplication
 @AllArgsConstructor
 public class Exercise4Application {
 
-	private GroupStartRepository groupStartRepository;
+	private UsersRepository usersRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Exercise4Application.class, args);
@@ -20,8 +20,8 @@ public class Exercise4Application {
 	@PostConstruct
 	public void init() {
 		System.out.println("Start!!!!!!!!!!!!!!!!!!");
-		GroupStart groupStart = new GroupStart();
-		groupStartRepository.save(groupStart);
+		Users users = new Users();
+		usersRepository.save(users);
 
 		System.out.println("--------");
 	}

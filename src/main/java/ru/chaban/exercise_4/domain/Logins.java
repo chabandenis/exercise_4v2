@@ -1,9 +1,6 @@
 package ru.chaban.exercise_4.domain;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
@@ -13,12 +10,16 @@ import java.util.UUID;
 @Entity
 @ToString
 @Data
-public class GroupStart {
+public class Logins {
     @Id
     @GeneratedValue
     private UUID id;
 
-    private LocalDate onTime;
+    private LocalDate access_date;
 
-    private int status;
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private Users userId;
+
+    private String application;
 }
