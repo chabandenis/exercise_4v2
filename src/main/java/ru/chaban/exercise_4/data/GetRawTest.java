@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @Data
-public class GetRawTestInterface implements GetRawsInterface {
+public class GetRawTest implements GetRawsInterface {
     @Override
     public List<RawInFile> get() {
         List<RawInFile> rawInFiles = new ArrayList<>();
