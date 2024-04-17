@@ -8,6 +8,7 @@ import ru.chaban.exercise_4.domain.Logins;
 import ru.chaban.exercise_4.domain.Users;
 import ru.chaban.exercise_4.save_data.LoginsServiceInteface;
 import ru.chaban.exercise_4.save_data.UsersServiceInterface;
+import ru.chaban.exercise_4.service.Utils;
 
 import java.util.List;
 
@@ -22,13 +23,14 @@ public class FromFileToDB {
     private final LoginsServiceInteface loginsServiceInterface;
 
     public void doIt() {
+        ConvertRawToUsersInteface convertRawToUsersUpdate = (ConvertRawToUsersInteface)Utils.cache(convertRawToUsers);
 
         // Шаг 1 чтение
         List<RawInFile> rawInFiles = getRawFromFile.get();
         System.out.println(rawInFiles);
 
         //шаг 2 преобразование
-        List<Users> users = convertRawToUsers.getUsers(rawInFiles);
+        List<Users> users = convertRawToUsersUpdate.getUsers(rawInFiles);
         System.out.println(users);
 
         //шаг 3 сохранить в базу
