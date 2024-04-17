@@ -2,12 +2,26 @@ package ru.chaban.exercise_4.service;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FunctionForTestHadler implements InvocationHandler {
-//    private Object obj;
+    private Object obj;
 
-    public FunctionForTestHadler() {
+    private Set<String> getMethods = new HashSet<>();
+
+    public FunctionForTestHadler(Object obj) {
+        this.obj = obj;
         System.out.println("Конструктор");
+
+        for (Method md : obj.getClass().getMethods()) {
+            if (md.isAnnotationPresent(LogTransformation.class)) {
+                getMethods.add(md.getName());
+            }
+        }
+
+
     }
 
 
@@ -20,13 +34,13 @@ public class FunctionForTestHadler implements InvocationHandler {
         if (proxy==null)
             return null;
 
-        //Object tmp = null;
+        Object tmp = method.invoke(obj, args);;
 
-        System.out.println("==++** method=" /*+ method */+ "; " + "; ret_Value=" );
-        //+ "args" + args[0].toString()
-        /*+ "; proxy=" + proxy.toString() +*/
+        if (getMethods.contains(method.getName())) {
+            System.out.println("==++** method=" + method.getName() + "; args=" + args[0].toString() + "; ret_Value=" + obj.toString() + "; time=" + LocalDateTime.now());
+        }
 
-        return method.invoke(proxy, args);
+        return tmp;
 
 //        if (setCache.contains(method.getName())
 //                && setMutator.containsKey(method.getName())) {

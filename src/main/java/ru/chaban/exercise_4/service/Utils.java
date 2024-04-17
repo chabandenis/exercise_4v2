@@ -11,7 +11,7 @@ public class Utils {
         Class cls = obj.getClass();
         Object res = Proxy.newProxyInstance(cls.getClassLoader(),
                 new Class[]{ConvertRawToUsersInteface.class},
-                new FunctionForTestHadler());
+                new FunctionForTestHadler(obj));
 
 
         return res;

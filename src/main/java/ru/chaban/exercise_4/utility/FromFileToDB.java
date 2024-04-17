@@ -10,6 +10,7 @@ import ru.chaban.exercise_4.save_data.LoginsServiceInteface;
 import ru.chaban.exercise_4.save_data.UsersServiceInterface;
 import ru.chaban.exercise_4.service.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,7 +30,11 @@ public class FromFileToDB {
         List<RawInFile> rawInFiles = getRawFromFile.get();
         System.out.println(rawInFiles);
 
+
         //шаг 2 преобразование
+        System.out.println("Шаг2");
+        convertRawToUsersUpdate.convertFromRowInFile(rawInFiles.get(0));
+
         List<Users> users = convertRawToUsersUpdate.getUsers(rawInFiles);
         System.out.println(users);
 
